@@ -1,4 +1,4 @@
-package sputnik.util;
+package sputnik.server.util;
 
 public class GameTick {
 	

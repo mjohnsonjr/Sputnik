@@ -1,4 +1,4 @@
-package sputnik.util;
+package sputnik.client;
 
 import java.awt.Canvas;
 import java.awt.Color;

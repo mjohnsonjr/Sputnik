@@ -1,4 +1,4 @@
-package sputnik.game;
+package sputnik.client;
 
 import java.awt.BorderLayout;
 import java.awt.Canvas;
@@ -6,8 +6,7 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import sputnik.util.GameRenderer;
-import sputnik.util.GameTick;
+import sputnik.server.util.GameTick;
 /**
  * Updates client on a tick system. Design is still pending this may disappear.
  * @author michael
