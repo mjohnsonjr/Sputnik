@@ -2,7 +2,7 @@ package sputnik.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.List;
+import java.util.Vector;
 
 import sputnik.server.util.Acceptor;
 import sputnik.server.util.Connection;
@@ -16,8 +16,11 @@ public class ConnectionManager {
 	/* List of connected Clients */
 	private ServerSocket socket;
 	private Acceptor acceptor;
+	private Vector<Connection> connections;
 	
-	public ConnectionManager( List<Connection> connections, int port ) throws IOException{
+	public ConnectionManager( Vector<Connection> connections, int port ) throws IOException{
+		
+		this.connections = connections;
 		this.socket = new ServerSocket( port );
 		this.acceptor = new Acceptor(socket, connections);
 	}

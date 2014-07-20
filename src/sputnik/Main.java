@@ -1,8 +1,7 @@
 package sputnik;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Vector;
 
 import sputnik.server.ConnectionManager;
 import sputnik.server.util.Connection;
@@ -17,7 +16,7 @@ public class Main {
 	private static Mode mode = Mode.SERVER;
 
 	static /* Server Vars */
-	List<Connection> connections = new ArrayList<Connection>();
+	Vector<Connection> connections = new Vector<Connection>();
 	static int port = 55555;
 	
 	

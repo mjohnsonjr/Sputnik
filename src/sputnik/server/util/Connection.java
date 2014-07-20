@@ -3,9 +3,12 @@ package sputnik.server.util;
 import java.io.IOException;
 import java.net.Socket;
 
+import sputnik.util.Player;
+
 public class Connection {
 
 	private Socket clientSocket;
+	private Player player;
 	
 	/*
 	 * Add info about authentication..

@@ -3,16 +3,16 @@ package sputnik.server.util;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.List;
+import java.util.Vector;
 
 public class Acceptor implements Runnable {
 
 	private boolean running;
 	private Thread thread;
-	private List<Connection> connections;
+	private Vector<Connection> connections;
 	private ServerSocket socket;
 	
-	public Acceptor(ServerSocket socket, List<Connection> connections ) {
+	public Acceptor(ServerSocket socket, Vector<Connection> connections ) {
 		this.running = false;
 		this.connections = connections;
 		this.socket = socket;
