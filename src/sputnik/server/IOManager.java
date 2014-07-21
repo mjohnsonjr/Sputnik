@@ -25,6 +25,7 @@ public class IOManager implements Runnable {
 		//Go through queue of player commands, updating each player's state accordingly
 		for( Connection c : connections ){
 			//Process player command, add to command queue for processing.
+			 c.getPlayer().getCommands();
 		}
 		
 		//Send out the update packet to all players.

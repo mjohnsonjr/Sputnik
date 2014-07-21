@@ -16,9 +16,10 @@ public class Connection {
 	 * some other specific things about this connection.
 	 */
 	
-	public Connection( Socket clientSocket ){
+	public Connection( Socket clientSocket, Player player ){
 		
 		this.clientSocket = clientSocket;
+		this.player = player;
 		
 	}
 	
@@ -30,4 +31,11 @@ public class Connection {
 		
 		this.clientSocket.close();
 	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	
+	
 }
