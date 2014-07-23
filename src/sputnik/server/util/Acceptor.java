@@ -51,7 +51,7 @@ public class Acceptor implements Runnable {
 			
 			/* Add to connection pool */
 			if(clientSocket != null){
-				connections.add(new Connection( clientSocket ));
+				//TODO:connections.add(new Connection( clientSocket, null ));
 			}
 		}
 	}
