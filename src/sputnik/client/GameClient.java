@@ -63,7 +63,7 @@ public class GameClient implements Runnable {
 		
 		this.running = false;
 		try {
-			this.thread.join();
+			this.thread.join(1000);
 		} catch (InterruptedException e) {
 			//TODO: LOG
 			return false;

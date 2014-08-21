@@ -5,53 +5,54 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Vector;
 
+import sputnik.util.ExceptionHandler;
+import sputnik.util.Logger;
+import sputnik.util.Player;
+import sputnik.util.SThread;
+import sputnik.util.ThreadHandler;
+import sputnik.util.enumeration.LogLevel;
+
 public class Acceptor implements Runnable {
 
-	private boolean running;
-	private Thread thread;
+	private SThread thread;
 	private Vector<Connection> connections;
 	private ServerSocket socket;
 	
 	public Acceptor(ServerSocket socket, Vector<Connection> connections ) {
-		this.running = false;
+		
 		this.connections = connections;
 		this.socket = socket;
-	}
-
-	public boolean isRunning(){
-		return running;
+		this.thread = new SThread(this);
 	}
 	
 	public void start() {
 		
-		this.thread = new Thread(this);
-		this.thread.start();
-		this.running = true;
+		ThreadHandler.startThread( thread );
 	}
 	
 	public void stop() throws InterruptedException {
 		
-		this.running = false;
-		this.thread.join();
-		this.thread = null;
-		
+		ThreadHandler.stopThread( thread );
 	}
 	
 	
 	@Override
 	public void run() {
 		Socket clientSocket = null;
-		
-		while( running ){
+		Connection connection = null;
+		while( thread.isRunning() ){
 			try {
 				clientSocket = socket.accept();
+				Logger.log( "Client at host " + clientSocket.getInetAddress() + ":" + clientSocket.getPort() + ".", LogLevel.DEBUG );
 			} catch (IOException e) {
-				e.printStackTrace();
+				ExceptionHandler.handleServerIOException( );
 			}
 			
 			/* Add to connection pool */
 			if(clientSocket != null){
-				//TODO:connections.add(new Connection( clientSocket, null ));
+				connection = new Connection( clientSocket, new Player() );
+				connections.add( connection );
+				connection.start();
 			}
 		}
 	}

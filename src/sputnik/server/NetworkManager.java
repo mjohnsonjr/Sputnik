@@ -21,22 +21,44 @@ public class NetworkManager {
 		
 		/* Create the connection manager */
 		this.connectionManager = null;
-		try {
-			connectionManager = new ConnectionManager(connections, port);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		connectionManager = new ConnectionManager( connections, port );
 		if(connectionManager != null)
 			connectionManager.startAcceptor();
 		
 		/* Create the IO (Datagram) Manager */
-		this.ioManager = new IOManager(connections, port);
+		this.ioManager = new IOManager( connections, port );
 		
 		
 	}
 	
 	public NetworkManager( short port ) {
 		this.port = port;
+	}
+	
+	public void startIOManager(){
+		this.ioManager.start();
+	}
+	
+	public void startConnectionManager(){
+		this.connectionManager.start();
+	}
+	
+	public void startEverything(){
+		startIOManager();
+		startConnectionManager();
+	}
+	
+	public void stopIOManager(){
+		this.ioManager.stop();
+	}
+	
+	public void stopConnectionManager(){
+		this.connectionManager.stop();
+	}
+	
+	public void stopEverything(){
+		stopIOManager();
+		stopConnectionManager();
 	}
 
 }

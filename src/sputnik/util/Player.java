@@ -7,8 +7,8 @@ public class Player {
 	
 	private Command[] commands;
 	
-	public Player ( long id ) {
-		this.id = id;
+	public Player ( ) {
+		//this.id = id;
 	}
 	
 	

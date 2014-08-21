@@ -1,4 +1,4 @@
-package sputnik.util;
+package sputnik.util.pkt;
 
 public class TCPPacket {
 

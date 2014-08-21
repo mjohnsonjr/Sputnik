@@ -1,9 +1,11 @@
-package sputnik.util;
+package sputnik.util.pkt;
 
 import java.io.Serializable;
 import java.util.Vector;
 
 import sputnik.server.util.Connection;
+import sputnik.util.Location;
+import sputnik.util.Player;
 
 public class UDPPacket implements Serializable {
 	

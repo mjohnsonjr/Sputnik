@@ -3,18 +3,21 @@ package sputnik.server;
 import java.util.Vector;
 
 import sputnik.server.util.Connection;
+import sputnik.util.SThread;
+import sputnik.util.ThreadHandler;
 
 public class IOManager implements Runnable {
 
 	private Vector<Connection> connections;
 	private int port;
 	
-	private Thread thread;
-	private boolean running;
+	/* Threading */
+	private SThread thread;
 	
 	public IOManager( Vector<Connection> connections, int port ){
 		this.connections = connections;
 		this.port = port;
+		this.thread = new SThread(this);
 	}
 	
 	
@@ -25,7 +28,7 @@ public class IOManager implements Runnable {
 		//Go through queue of player commands, updating each player's state accordingly
 		for( Connection c : connections ){
 			   //Process player command, add to command queue for processing.
-			 c.getPlayer().getCommands();
+			 //process( c.getPlayer().getCommands() );
 		}
 		
 		//Send out the update packet to all players.
@@ -34,22 +37,18 @@ public class IOManager implements Runnable {
 
 	public void start() {
 		
-		this.thread = new Thread(this);
-		this.running = true;
-		this.thread.start();
+		ThreadHandler.startThread( thread );
 	}
 	
-	public void stop() throws InterruptedException {
+	public void stop() {
 		
-		this.thread.join();
-		this.running = false;
-		this.thread = null;
+		ThreadHandler.stopThread( thread );
 	}
 
 	@Override
 	public void run() {
 		
-		while(running){
+		while( this.thread.isRunning() ){
 			//On game tick, update.
 		}
 		
